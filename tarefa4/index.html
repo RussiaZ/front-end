@@ -1,1 +1,974 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Curiosidades e fatos históricos da Ciência da Computação">
+    <meta name="author" content="Portal Computação">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo Confuso da Computação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #pagina {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        article {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        article:last-child {
+            border-bottom: none;
+        }
+
+        article h3 {
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        article p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        aside {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        aside h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #555;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        table caption {
+            caption-side: top;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        fieldset {
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            padding: 20px;
+        }
+
+        legend {
+            color: #667eea;
+            font-weight: bold;
+            padding: 0 10px;
+            font-size: 1.1em;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
+        }
+
+        details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+            border-left: 4px solid #764ba2;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #764ba2;
+            user-select: none;
+        }
+
+        summary:hover {
+            color: #667eea;
+        }
+
+        figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        figcaption {
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+            color: #fff;
+            padding: 50px 20px 30px;
+            margin-top: 50px;
+            border-top: 4px solid #667eea;
+        }
+
+        footer > div {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .footer-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+
+        .footer-section address {
+            font-style: normal;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #764ba2;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(102, 126, 234, 0.2);
+            border-radius: 50%;
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #667eea;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 99;
+            transition: all 0.3s;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="pagina">
+
+    <header id="topo">
+        <h1>Arquivo (Quase) Perdido da Ciência da Computação</h1>
+        <p>Uma coletânea caótica de fatos históricos, curiosos e inesperados.</p>
+    </header>
+
+    <nav id="menu-principal">
+        <ul>
+            <li><a href="#pioneiros">Pioneiros</a></li>
+            <li><a href="#bugs">Bugs</a></li>
+            <li><a href="#internet">Internet</a></li>
+            <li><a href="#linguagens">Linguagens</a></li>
+            <li><a href="#linha-do-tempo">Linha do Tempo</a></li>
+            <li><a href="#formulario">Envie Algo</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section id="pioneiros">
+            <h2>Pioneiros Esquecidos</h2>
+
+            <article>
+                <h3>Ada Lovelace</h3>
+                <p>Considerada a primeira programadora da história.</p>
+                <details>
+                    <summary>Ver mais</summary>
+                    <p>Ela escreveu um algoritmo para a Máquina Analítica no século XIX.</p>
+                </details>
+            </article>
+
+            <article>
+                <h3>Alan Turing</h3>
+                <p>Criador do conceito de Máquina de Turing.</p>
+                <blockquote>
+                    "Podemos ver apenas um pouco do futuro, mas o suficiente para perceber que há muito a fazer."
+                </blockquote>
+            </article>
+
+            <aside>
+                <h4>Curiosidade lateral</h4>
+                <p>Durante décadas, o trabalho de Turing foi mantido em segredo.</p>
+            </aside>
+        </section>
+
+        <section id="bugs">
+            <h2>Histórias de Bugs</h2>
+
+            <article>
+                <h3>O Primeiro Bug Real</h3>
+                <p>Uma mariposa encontrada em um computador em 1947.</p>
+                <figure>
+                    <figcaption>Registro do bug colado no relatório técnico.</figcaption>
+                </figure>
+            </article>
+
+            <article>
+                <h3>O Vírus Creeper</h3>
+                <p>Primeiro vírus da história (1971).</p>
+                <p>Mensagem exibida:</p>
+                <pre>
+I'M THE CREEPER : CATCH ME IF YOU CAN
+                </pre>
+            </article>
+        </section>
+
+        <section id="internet">
+            <h2>Curiosidades da Internet</h2>
+
+            <article>
+                <h3>Primeiro Website</h3>
+                <p>Criado em 1991 por Tim Berners-Lee.</p>
+            </article>
+
+            <article>
+                <h3>ARPANET</h3>
+                <p>A precursora da internet moderna.</p>
+                <ul>
+                    <li>Primeira mensagem enviada: "LO"</li>
+                    <li>O sistema caiu antes de completar "LOGIN"</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Emojis e ASCII</h3>
+                <p>Antes dos emojis gráficos, usávamos:</p>
+                <code>:-)</code>
+                <code>;-)</code>
+                <code>:-D</code>
+            </article>
+        </section>
+
+        <section id="linguagens">
+            <h2>Linguagens de Programação</h2>
+
+            <article>
+                <h3>COBOL</h3>
+                <p>Ainda usado em sistemas bancários.</p>
+            </article>
+
+            <article>
+                <h3>C</h3>
+                <p>Base para muitos sistemas operacionais.</p>
+            </article>
+
+            <article>
+                <h3>HTML</h3>
+                <p>Não é linguagem de programação, mas estrutura a web.</p>
+            </article>
+
+            <div>
+                <table>
+                    <caption>Linguagens e Ano de Criação</caption>
+                    <thead>
+                        <tr>
+                            <th>Linguagem</th>
+                            <th>Ano</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>COBOL</td>
+                            <td>1959</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>1972</td>
+                        </tr>
+                        <tr>
+                            <td>Python</td>
+                            <td>1991</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Dados históricos aproximados</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <section id="linha-do-tempo">
+            <h2>Linha do Tempo Aleatória</h2>
+
+            <ol>
+                <li>1837 - Máquina Analítica</li>
+                <li>1946 - ENIAC</li>
+                <li>1969 - ARPANET</li>
+                <li>1991 - Primeiro site</li>
+                <li>2007 - Popularização dos smartphones</li>
+            </ol>
+        </section>
+
+        <section id="nomes">
+            <h2>Nomes Estranhos da Computação</h2>
+
+            <article>
+                <h3>Spam vem de um presunto</h3>
+                <p>
+                    O termo "spam" para emails indesejados vem de um esquete do 
+                    <strong>Monty Python</strong> onde a palavra SPAM (marca de presunto enlatado) 
+                    era repetida incessantemente.
+                </p>
+            </article>
+
+            <article>
+                <h3>Bluetooth tem nome viking</h3>
+                <p>
+                    A tecnologia foi nomeada em homenagem ao rei 
+                    <em>Harald "Bluetooth" Gormsson</em>, que unificou a Dinamarca.
+                    A ideia era "unificar dispositivos".
+                </p>
+            </article>
+
+            <article>
+                <h3>Bug é literalmente bug</h3>
+                <p>
+                    O famoso inseto encontrado no computador 
+                    <abbr title="Harvard Mark II">Mark II</abbr> em 1947 
+                    era uma mariposa de verdade.
+                </p>
+                <details>
+                    <summary>Detalhe inútil</summary>
+                    <p>O inseto ainda está preservado em um museu.</p>
+                </details>
+            </article>
+
+        </section>
+
+        <section id="acidentes">
+
+            <h2>Acidentes Tecnológicos Surpreendentes</h2>
+
+            <article>
+                <h3>O primeiro domínio registrado</h3>
+                <p>
+                    O primeiro domínio da história foi 
+                    <code>symbolics.com</code> registrado em 1985.
+                </p>
+            </article>
+
+            <article>
+                <h3>O erro que quase causou guerra nuclear</h3>
+                <p>
+                    Em 1983, um sistema soviético detectou falsamente mísseis americanos.
+                    O oficial Stanislav Petrov decidiu ignorar o alerta.
+                </p>
+                <blockquote>
+                    Um bug pode ter salvo o mundo.
+                </blockquote>
+            </article>
+
+            <article>
+                <h3>O computador que pesava 27 toneladas</h3>
+                <p>
+                    O ENIAC ocupava 167 m² e consumia energia suficiente para escurecer parte da cidade.
+                </p>
+            </article>
+
+        </section>
+
+        <section id="dinheiro">
+
+            <h2>Erros Caríssimos</h2>
+
+            <article>
+                <h3>O traço que custou milhões</h3>
+                <p>
+                    Em 1962, a NASA perdeu a sonda Mariner 1 por causa de um erro em uma fórmula matemática:
+                    faltava um simples hífen.
+                </p>
+            </article>
+
+            <article>
+                <h3>Bitcoin jogado no lixo</h3>
+                <p>
+                    Um homem no Reino Unido descartou um HD com 8.000 bitcoins.
+                </p>
+                <pre>
+Valor atual: melhor não calcular.
+                </pre>
+            </article>
+
+        </section>
+
+        <section id="aleatorio">
+
+            <h2>Coisas Aleatórias que Você Não Pediu</h2>
+
+            <article>
+                <h3>O primeiro emoticon</h3>
+                <p>
+                    :-) foi sugerido em 1982 por Scott Fahlman.
+                </p>
+            </article>
+
+            <article>
+                <h3>A senha mais usada do mundo</h3>
+                <p><strong>123456</strong></p>
+            </article>
+
+            <article>
+                <h3>O Google já quebrou a internet</h3>
+                <p>
+                    Em 2009, o Google marcou acidentalmente todos os sites como maliciosos por 40 minutos.
+                </p>
+            </article>
+
+            <article>
+                <h3>Computadores odeiam calor</h3>
+                <p>
+                    Um data center pode usar mais água para resfriamento do que uma pequena cidade.
+                </p>
+            </article>
+
+        </section>
+
+        <section>
+
+            <h2>Tabela Totalmente Necessária</h2>
+
+            <table>
+                <tr>
+                    <th>Curiosidade</th>
+                    <th>Nível de Inutilidade</th>
+                </tr>
+                <tr>
+                    <td>Spam vem de presunto</td>
+                    <td>Alto</td>
+                </tr>
+                <tr>
+                    <td>Bluetooth é viking</td>
+                    <td>Médio</td>
+                </tr>
+                <tr>
+                    <td>Senha mais usada é 123456</td>
+                    <td>Crítico</td>
+                </tr>
+            </table>
+
+        </section>
+
+        <section id="form">
+
+            <h2>Envie um Fato Inútil</h2>
+
+            <form>
+                <fieldset>
+                    <legend>Cadastro de Inutilidades</legend>
+
+                    <label>Nome:</label>
+                    <input type="text" name="nome" required>
+
+                    <label>Fato Inútil:</label>
+                    <input type="text" name="fato" required>
+
+                    <label>Grau de inutilidade (0-10):</label>
+                    <input type="number" name="grau" min="0" max="10" required>
+
+                    <input type="submit" value="Enviar inutilidade">
+                </fieldset>
+            </form>
+            
+        </section>
+
+        <section id="formulario">
+            <h2>Envie sua Curiosidade</h2>
+
+            <form>
+                <fieldset>
+                    <legend>Informações</legend>
+
+                    <label>Nome:</label>
+                    <input type="text" name="nome" required>
+
+                    <label>Email:</label>
+                    <input type="email" name="email" required>
+
+                    <label>Categoria:</label>
+                    <select name="categoria" required>
+                        <option value="">Selecione uma categoria</option>
+                        <option>Pioneiros</option>
+                        <option>Bugs</option>
+                        <option>Internet</option>
+                        <option>Linguagens</option>
+                    </select>
+
+                    <label>Data do fato:</label>
+                    <input type="date" name="data" required>
+
+                    <label>Sua curiosidade:</label>
+                    <textarea name="curiosidade" required></textarea>
+
+                    <input type="submit" value="Enviar">
+                </fieldset>
+            </form>
+        </section>
+
+        <section id="formulario-secreto">
+
+            <h2>Envie um Bug ou Easter Egg</h2>
+
+            <form>
+                <fieldset>
+                    <legend>Cadastro Suspeito</legend>
+
+                    <label>Seu nome:</label>
+                    <input type="text" name="nome" required>
+
+                    <label>Tipo:</label>
+                    <select name="tipo" required>
+                        <option value="">Selecione um tipo</option>
+                        <option>Bug</option>
+                        <option>Easter Egg</option>
+                        <option>Comando estranho</option>
+                    </select>
+
+                    <label>Descrição:</label>
+                    <textarea name="descricao" required></textarea>
+
+                    <label>Grau de estranheza (1-10):</label>
+                    <input type="number" name="estranheza" min="1" max="10" required>
+
+                    <input type="submit" value="Enviar para os arquivos secretos">
+                </fieldset>
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<footer>
+    <div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Instituto Internacional de Informações Desnecessárias</h3>
+                <p>© 2026 - Preservando a história caótica da computação</p>
+                <address>
+                    <strong>Email:</strong> <a href="mailto:inutilidades@caosdigital.com">inutilidades@caosdigital.com</a>
+                </address>
+            </div>
+
+            <div class="footer-section">
+                <h3>Arquivo Confuso da Computação</h3>
+                <p>Sua fonte confiável de fatos inúteis desde 2026</p>
+                <address>
+                    <strong>Contato:</strong> <a href="mailto:contato@computacao.com">contato@computacao.com</a>
+                </address>
+            </div>
+
+            <div class="footer-section">
+                <h3>Arquivo Ultra-Secreto</h3>
+                <p>Para os verdadeiros entusiastas de bugs e easter eggs</p>
+                <address>
+                    <strong>Email:</strong> <a href="mailto:contato@ultrasecreto.dev">contato@ultrasecreto.dev</a>
+                </address>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#topo">Voltar ao Topo</a>
+                <a href="#pioneiros">Pioneiros</a>
+                <a href="#bugs">Bugs</a>
+                <a href="#internet">Internet</a>
+                <a href="#linguagens">Linguagens</a>
+            </div>
+
+            <div class="social-links">
+                <a href="#" title="GitHub">GitHub</a>
+                <a href="#" title="Twitter">Twitter</a>
+                <a href="#" title="LinkedIn">LinkedIn</a>
+            </div>
+
+            <p>&copy; 2026 Arquivo Confuso da Computação. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" title="Voltar ao topo">↑</button>
+
+<script>
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Form submission handler
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Obrigado por enviar! Seu fato inútil foi registrado nos arquivos.');
+            form.reset();
+        });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
